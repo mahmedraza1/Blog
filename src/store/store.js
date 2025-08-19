@@ -5,3 +5,5 @@ const store = configureStore({
         // Reducers Go here
     }
 })
+
+export default store;
