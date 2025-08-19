@@ -36,8 +36,8 @@ class AppwriteAuth {
 
   async getCurrentUser() {
     try {
-      await this.account.get();
-    } catch {
+      return await this.account.get();
+    } catch (error) {
       console.log("Error getting Account info", error);
     }
   }
