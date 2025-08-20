@@ -1,4 +1,4 @@
-import conf from "../.conf/conf"
+import conf from "../.conf/conf";
 import { Client, Account, ID } from "appwrite";
 
 class AppwriteAuth {
@@ -42,14 +42,13 @@ class AppwriteAuth {
     }
   }
 
-  async logout(){
-    try{
-        await this.account.deleteSession("current")
-    } catch{
+  async logout() {
+    try {
+      await this.account.deleteSession("current");
+    } catch {
       console.log("Error getting logging out", error);
     }
   }
-
 }
 
 const authService = new AppwriteAuth();
