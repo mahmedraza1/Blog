@@ -17,20 +17,19 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mb-8 gap-8">
         <div className="flex flex-col md:col-span-2 gap-4">
           <span className="flex items-center gap-2">
-                <p className="bg-orange-500 rounded-lg p-3">
-                  <FaBolt className="text-gray-100 text-xl" />
-                </p>
-                <p className="text-2xl font-bold">Muhammad Ahmed Raza</p>
-              </span>
+            <p className="bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 rounded-lg p-3">
+              <FaBolt className="text-gray-100 text-xl" />
+            </p>
+            <p className="text-2xl font-bold">Muhammad Ahmed Raza</p>
+          </span>
           <div className="flex flex-col gap-4 items-start">
             <p className="text-gray-200 w-full md:w-11/12">
               I created this space as a digital archive of my experiences and
               learnings. Through these blogs, I share the insights and stories
               that shaped me.
             </p>
-            <button className="flex items-center justify-center gap-2 bg-orange-500 px-4 py-2 rounded-lg font-semibold shadow">
-              <FaStar className="text-gray-100 text-xl" />{" "}
-              Star Github
+            <button className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 hover:-translate-0.5 cursor-pointer px-4 py-2 rounded-lg font-semibold shadow">
+              <FaStar className="text-gray-100 text-xl" /> Star Github
             </button>
           </div>
         </div>
@@ -77,23 +76,23 @@ const Footer = () => {
               <a
                 href="https://github.com/mahmedraza1"
                 target="_blank"
-                className="bg-gray-500/40 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
+                className="group bg-gray-500/40 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
               >
-                <FaGithub className="text-gray-100" />
+                <FaGithub className="text-gray-100 group-hover:text-gray-500" />
               </a>
               <a
                 href="https://linkedin.com/in/mahmedraza1"
                 target="_blank"
-                className="bg-gray-500/40 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
+                className="group bg-gray-500/40  transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
               >
-                <FaLinkedin className="text-gray-100" />
+                <FaLinkedin className="text-gray-100 group-hover:text-indigo-500" />
               </a>
               <a
                 href="mailto:developer.mahmedraza1@gmail.com"
                 target="_blank"
-                className="bg-gray-500/40 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
+                className="group bg-gray-500/40  transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
               >
-                <FaEnvelope className="text-gray-100" />
+                <FaEnvelope className="text-gray-100 group-hover:text-orange-500" />
               </a>
             </div>
           </div>
@@ -110,7 +109,7 @@ const Footer = () => {
         </span>
         <button
           onClick={window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex cursor-pointer items-center gap-2 mt-4 bg-gray-500/40 rounded-lg border border-stone-500 shadow px-3 py-2"
+          className="flex cursor-pointer items-center gap-2 mt-4 bg-gray-500/40 hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow px-3 py-2"
         >
           <FaArrowUp className="text-gray-100 text-sm" />
           <p className="text-sm">Back to Top</p>
