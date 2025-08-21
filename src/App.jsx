@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login, logout } from "./store/authslice";
 import authService from "./appwrite/auth";
-import {Header, Footer} from "./components/index";
+import { Footer, Header } from "./components/index";
 
 function App() {
   const [loading, setLoading] = useState(true);

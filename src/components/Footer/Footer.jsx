@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBolt, FaLink } from "react-icons/fa6";
+import { FaLink, FaBolt } from "react-icons/fa6";
 import {
   FaStar,
   FaHome,
@@ -16,21 +16,21 @@ const Footer = () => {
     <div className="w-full border-t border-t-gray-200/40 md:px-8 px-4 py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mb-8 gap-8">
         <div className="flex flex-col md:col-span-2 gap-4">
-          <span className="flex items-center text-white gap-2">
-            <p className="bg-green-500/90 rounded-lg p-3">
-              <FaBolt className="text-gray-100 w-5 h-5" />
-            </p>
-            <p className="text-2xl font-bold">Muhammad Ahmed Raza</p>
-          </span>
+          <span className="flex items-center gap-2">
+                <p className="bg-orange-500 rounded-lg p-3">
+                  <FaBolt className="text-gray-100 text-xl" />
+                </p>
+                <p className="text-2xl font-bold">Muhammad Ahmed Raza</p>
+              </span>
           <div className="flex flex-col gap-4 items-start">
             <p className="text-gray-200 w-full md:w-11/12">
               I created this space as a digital archive of my experiences and
               learnings. Through these blogs, I share the insights and stories
               that shaped me.
             </p>
-            <button className="flex items-center justify-center gap-2 bg-green-500/90 px-4 py-2 rounded-lg font-semibold shadow">
-              <FaStar className="text-gray-100 w-5 h-5 hover:text-blue-200" />{" "}
-              Start Github
+            <button className="flex items-center justify-center gap-2 bg-orange-500 px-4 py-2 rounded-lg font-semibold shadow">
+              <FaStar className="text-gray-100 text-xl" />{" "}
+              Star Github
             </button>
           </div>
         </div>
@@ -38,22 +38,22 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <span className="flex flex-col gap-2">
             <a href="#">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-green-500/90">
+              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <FaHome /> Home
               </span>
             </a>
             <a href="#">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-green-500/90">
+              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <FaBook /> Blogs
               </span>
             </a>
             <a href="#">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-green-500/90">
+              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <MdPerson /> About
               </span>
             </a>
-            <a href="#">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-green-500/90">
+            <a href="https://www.fiverr.com/mahmedraza1">
+              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <FaLink /> Work With Me
               </span>
             </a>
@@ -64,7 +64,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img
-                className="w-10 h-10 rounded-full border-2 object-cover border-b-green-500/90"
+                className="w-10 h-10 rounded-full border-2 object-cover border-b-orange-500"
                 src="/logo.jpg"
                 alt="logo"
               />
