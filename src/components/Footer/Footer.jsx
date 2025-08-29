@@ -10,6 +10,7 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -36,26 +37,26 @@ const Footer = () => {
         <div className="flex flex-col">
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <span className="flex flex-col gap-2">
-            <a href="#">
+            <NavLink to="/">
               <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <FaHome /> Home
               </span>
-            </a>
-            <a href="#">
+            </NavLink>
+            <NavLink to="/blogs">
               <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <FaBook /> Blogs
               </span>
-            </a>
-            <a href="#">
+            </NavLink>
+            <NavLink to="/about">
               <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <MdPerson /> About
               </span>
-            </a>
-            <a href="https://www.fiverr.com/mahmedraza1">
+            </NavLink>
+            <NavLink to="https://www.fiverr.com/mahmedraza1">
               <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
                 <FaLink /> Work With Me
               </span>
-            </a>
+            </NavLink>
           </span>
         </div>
         <div className="flex flex-col">
@@ -73,27 +74,27 @@ const Footer = () => {
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <a
-                href="https://github.com/mahmedraza1"
+              <NavLink
+                to="https://github.com/mahmedraza1"
                 target="_blank"
                 className="group bg-gray-500/40 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
               >
                 <FaGithub className="text-gray-100 group-hover:text-gray-500" />
-              </a>
-              <a
-                href="https://linkedin.com/in/mahmedraza1"
+              </NavLink>
+              <NavLink
+                to="https://linkedin.com/in/mahmedraza1"
                 target="_blank"
                 className="group bg-gray-500/40  transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
               >
                 <FaLinkedin className="text-gray-100 group-hover:text-indigo-500" />
-              </a>
-              <a
-                href="mailto:developer.mahmedraza1@gmail.com"
+              </NavLink>
+              <NavLink
+                to="mailto:developer.mahmedraza1@gmail.com"
                 target="_blank"
                 className="group bg-gray-500/40  transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow h-10 w-10 flex items-center justify-center"
               >
                 <FaEnvelope className="text-gray-100 group-hover:text-orange-500" />
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
