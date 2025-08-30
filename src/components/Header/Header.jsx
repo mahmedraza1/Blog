@@ -5,7 +5,6 @@ import { logout } from "../../store/authslice";
 import { useNavigate } from "react-router-dom";
 import { FaBolt } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import Button from "../Button";
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
