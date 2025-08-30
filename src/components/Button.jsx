@@ -1,14 +1,22 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({ children, type = 'button', className = '', bgColor = 'bg-orange-500', textColor = 'text-gray-100', ...props }) => {
-  return <button
+const Button = ({
+  children,
+  type = "button",
+  className = "",
+  bgColor = "bg-orange-500",
+  textColor = "text-gray-100",
+  ...props
+}) => {
+  return (
+    <button
       type={type}
       className={`${bgColor} ${textColor} ${className} flex items-center justify-center gap-2 bg-orange-500 hover:-translate-0.5 hover:bg-orange-500/90 transition-all duration-300 px-4 py-2 rounded-lg font-semibold shadow cursor-pointer`}
       {...props}
     >
       {children}
-    </button>;
-  
-}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
