@@ -13,6 +13,7 @@ import { MdPerson } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+
   return (
     <div className="w-full border-t border-t-gray-200/40 md:px-8 px-4 py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mb-8 gap-8">
@@ -37,23 +38,23 @@ const Footer = () => {
         <div className="flex flex-col">
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <span className="flex flex-col gap-2">
-            <NavLink to="/">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
+            <NavLink to="/" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+              <span className="flex items-center gap-2">
                 <FaHome /> Home
               </span>
             </NavLink>
-            <NavLink to="/blogs">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
+            <NavLink to="/blogs" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+              <span className="flex items-center gap-2">
                 <FaBook /> Blogs
               </span>
             </NavLink>
-            <NavLink to="/about">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
+            <NavLink to="/about" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+              <span className="flex items-center gap-2">
                 <MdPerson /> About
               </span>
             </NavLink>
-            <NavLink to="https://www.fiverr.com/mahmedraza1">
-              <span className="flex items-center gap-2 text-gray-200 hover:text-orange-500">
+            <NavLink to="https://www.fiverr.com/mahmedraza1" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+              <span className="flex items-center gap-2">
                 <FaLink /> Work With Me
               </span>
             </NavLink>
