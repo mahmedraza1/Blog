@@ -27,7 +27,7 @@ function App() {
       <Header />
       <main>
         <h1 className="text-2xl">Welcome to Mark's Blog</h1>
-       {/* TODO: <Outlet /> */}
+        {/* TODO: <Outlet /> */}
       </main>
       <Footer />
     </div>

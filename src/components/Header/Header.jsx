@@ -1,7 +1,6 @@
 import React from "react";
 import LogoutBtn from "./LogoutBtn";
 import { useSelector } from "react-redux";
-import { logout } from "../../store/authslice";
 import { useNavigate } from "react-router-dom";
 import { FaBolt } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";

@@ -10,10 +10,9 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Footer = () => {
-
   return (
     <div className="w-full border-t border-t-gray-200/40 md:px-8 px-4 py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mb-8 gap-8">
@@ -30,9 +29,11 @@ const Footer = () => {
               learnings. Through these blogs, I share the insights and stories
               that shaped me.
             </p>
-            <button className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 hover:-translate-0.5 cursor-pointer px-4 py-2 rounded-lg font-semibold shadow">
-              <FaStar className="text-gray-100 text-xl" /> Star Github
-            </button>
+            <Link to="https://github.com/mahmedraza1">
+              <button className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 hover:-translate-0.5 cursor-pointer px-4 py-2 rounded-lg font-semibold shadow">
+                <FaGithub className="text-gray-100 text-xl" /> Github
+              </button>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col">
