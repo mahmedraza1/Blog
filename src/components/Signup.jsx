@@ -6,23 +6,22 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "./index";
 
-const Login = () => {
+const Signup = () => {
   const { error, setError } = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
-  const handleLogin = async (data) => {
-    setError("");
+  const handleSignup = async (data) => {
     try {
-      const session = await authService.login(data);
-      if (session) {
+      const user = await authService.createAccount(data);
+      if (user) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(login(userData));
         navigate("/");
       }
     } catch (error) {
-      setError(error.message);
+      setError(error);
     }
   };
 
@@ -35,10 +34,17 @@ const Login = () => {
           </p>
           <p className="text-2xl font-bold">Muhammad Ahmed Raza</p>
         </NavLink>
-        <h1 className="text-3xl font-bold">Login</h1>
+        <h1 className="text-3xl font-bold">Signup</h1>
       </div>
-
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <form onSubmit={handleSubmit(handleSignup)}>
+        <Input
+          type="text"
+          label="Name"
+          placeholder="Enter Your Name"
+          {...register("name", {
+            required: true,
+          })}
+        />
         <Input
           type="email"
           label="Email"
@@ -66,11 +72,19 @@ const Login = () => {
             },
           })}
         />
+        <div>
+          <p>Password Must Contain:</p>
+          <ul>
+            <li>At least 8 characters</li>
+            <li>At least 1 letter</li>
+            <li>At least 1 number</li>
+          </ul>
+        </div>
         <p className="text-red-500">{error}</p>
-        <Button type="submit">Login</Button>
+        <Button type="submit">Signup</Button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Signup;
