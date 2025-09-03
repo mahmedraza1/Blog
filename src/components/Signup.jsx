@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Input, Button } from "./index";
 
 const Signup = () => {
-  const { error, setError } = useState("");
+  const [ error, setError ] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
