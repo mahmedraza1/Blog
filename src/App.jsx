@@ -24,10 +24,14 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="w-screen h-screen bg-gray-900 text-white">
+    <div
+      className="w-screen h-screen bg-gray-900 text-white overflow-x-hidden 
+  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:bg-zinc-500 [&::-webkit-scrollbar-thumb]:rounded-full"
+    >
       <Header />
-      <main className="min-h-[60vh]">
-         <Outlet />
+      <main className="min-h-[46vh] w-screen flex items-center justify-center">
+        <Outlet />
       </main>
       <Footer />
     </div>

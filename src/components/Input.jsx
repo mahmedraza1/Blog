@@ -13,7 +13,7 @@ const Input = forwardRef(
         <input
           ref={ref}
           type={type}
-          className={`border border-gray-300 rounded-md p-2 ${className}`}
+          className={`border border-gray-400 rounded-md p-2 ${className}`}
           {...props}
           id={id}
         />
