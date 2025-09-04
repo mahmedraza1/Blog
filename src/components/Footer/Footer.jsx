@@ -112,7 +112,7 @@ const Footer = () => {
         </span>
         <button
           onClick={window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex cursor-pointer items-center gap-2 mt-4 bg-gray-500/40 hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border border-stone-500 shadow px-3 py-2"
+          className="flex cursor-pointer items-center gap-2 mt-4  hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border bg-gray-500/40 border-stone-500 shadow px-3 py-2"
         >
           <FaArrowUp className="text-gray-100 text-sm" />
           <p className="text-sm">Back to Top</p>

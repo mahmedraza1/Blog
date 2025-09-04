@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { login, logout } from "./store/authslice";
 import authService from "./appwrite/auth";
 import { Footer, Header } from "./components/index";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -25,9 +26,8 @@ function App() {
   return !loading ? (
     <div className="w-screen h-screen bg-gray-900 text-white">
       <Header />
-      <main>
-        <h1 className="text-2xl">Welcome to Mark's Blog</h1>
-        {/* TODO: <Outlet /> */}
+      <main className="min-h-[60vh]">
+         <Outlet />
       </main>
       <Footer />
     </div>

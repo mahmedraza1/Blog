@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "./index";
+import { NavLink } from "react-router-dom";
+import { FaBolt } from "react-icons/fa";  
 
 const Signup = () => {
   const [ error, setError ] = useState("");
@@ -26,6 +28,8 @@ const Signup = () => {
   };
 
   return (
+        <div className="w-full min-h-[60vh] flex items-center justify-center bg-gray-900 text-white">
+
     <div>
       <div className="flex items-center justify-center">
         <NavLink to="/" className="flex items-center gap-2">
@@ -83,6 +87,7 @@ const Signup = () => {
         <p className="text-red-500">{error}</p>
         <Button type="submit">Signup</Button>
       </form>
+    </div>
     </div>
   );
 };

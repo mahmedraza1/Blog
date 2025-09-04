@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "./index";
+import { NavLink } from "react-router-dom";
+import { FaBolt } from "react-icons/fa";
 
 const Login = () => {
   const [ error, setError ] = useState("");
@@ -27,8 +29,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-center">
+    <div className="w-full min-h-[60vh] flex items-center justify-center bg-gray-900 text-white">
+    <div className="bg-gray-500/40 border-stone-500 shadow w-1/3 h-2/3 flex items-center justify-center flex-col gap-8 rounded-lg border p-4">
+      <div className="flex flex-col items-center justify-center">
         <NavLink to="/" className="flex items-center gap-2">
           <p className="bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 rounded-lg p-3">
             <FaBolt className="text-gray-100 text-xl" />
@@ -38,7 +41,7 @@ const Login = () => {
         <h1 className="text-3xl font-bold">Login</h1>
       </div>
 
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <form onSubmit={handleSubmit(handleLogin)} className="w-full flex flex-col gap-4 items-center justify-center">
         <Input
           type="email"
           label="Email"
@@ -69,6 +72,7 @@ const Login = () => {
         <p className="text-red-500">{error}</p>
         <Button type="submit">Login</Button>
       </form>
+    </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ const Input = forwardRef(
   ({ label, type = "text", className = "", ...props }, ref) => {
     const id = useId();
     return (
-      <div className="flex items-center gap-4">
+      <div className="flex justify-center flex-col gap-1">
         {label && (
           <label htmlFor={id} className="inline-block mb-1">
             {label}
