@@ -6,12 +6,24 @@ const Button = ({
   className = "",
   bgColor = "bg-orange-500",
   textColor = "text-gray-100",
+  disabled = false,
   ...props
 }) => {
   return (
     <button
       type={type}
-      className={`${bgColor} ${textColor} ${className} flex items-center justify-center gap-2 bg-orange-500 hover:-translate-0.5 hover:bg-orange-500/90 transition-all font-bold duration-300 px-4 py-2 rounded-lg shadow cursor-pointer`}
+      disabled={disabled}
+      className={`
+        ${bgColor} ${textColor} ${className} 
+        flex items-center justify-center gap-2 
+        hover:${disabled ? '' : 'bg-opacity-90'} 
+        hover:${disabled ? '' : 'transform'} 
+        hover:${disabled ? '' : '-translate-y-0.5'} 
+        transition-all font-medium md:font-bold duration-300 
+        px-3 py-1.5 md:px-4 md:py-2 
+        rounded-lg shadow cursor-pointer
+        ${disabled ? 'opacity-70 cursor-not-allowed' : ''}
+      `}
       {...props}
     >
       {children}

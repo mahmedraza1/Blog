@@ -36,6 +36,9 @@ class AppwritePost {
 
   async updatePost({ title, content, featuredImage, status, slug }, id) {
     try {
+      console.log("Updating document with ID:", id);
+      console.log("Update data:", { title, content, featuredImage, status, slug });
+      
       return await this.database.updateDocument(
         conf.appwriteDatabaseID,
         conf.appwriteCollectionID,
@@ -49,19 +52,30 @@ class AppwritePost {
         }
       );
     } catch (error) {
-      console.log("Failed to Update the Document", error);
+      console.error("Failed to Update the Document", error);
+      throw error; // Re-throw the error so it can be caught by the caller
     }
   }
 
   async getPost(id) {
     try {
-      return await this.database.getDocument(
+      console.log("Fetching post with ID:", id);
+      const post = await this.database.getDocument(
         conf.appwriteDatabaseID,
         conf.appwriteCollectionID,
         id
       );
+      
+      // Make sure the post has a slug field (important for editing)
+      if (post && !post.slug) {
+        console.log("Post has no slug field, adding it using $id:", post.$id);
+        post.slug = post.$id;
+      }
+      
+      return post;
     } catch (error) {
-      console.log("Failed to Get the Post", error);
+      console.error("Failed to Get the Post", error);
+      throw error; // Re-throw the error so it can be caught by the caller
     }
   }
 

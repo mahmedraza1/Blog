@@ -8,6 +8,7 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     authService
       .getCurrentUser()
@@ -21,23 +22,28 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [dispatch]);
 
-  return !loading ? (
+  if (loading) {
+    return (
+      <div className="bg-gray-900 text-white w-screen h-screen flex flex-col items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-orange-500 mb-6"></div>
+        <h1 className="text-xl md:text-2xl font-medium">Loading your experience...</h1>
+      </div>
+    );
+  }
+  
+  return (
     <div
-      className="w-screen h-screen bg-gray-900 text-white overflow-x-hidden 
-  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100
-  [&::-webkit-scrollbar-thumb]:bg-zinc-500 [&::-webkit-scrollbar-thumb]:rounded-full"
+      className="min-h-screen bg-gray-900 text-white overflow-x-hidden flex flex-col 
+      [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100
+      [&::-webkit-scrollbar-thumb]:bg-zinc-500 [&::-webkit-scrollbar-thumb]:rounded-full"
     >
       <Header />
-      <main className="min-h-[46vh] w-screen flex items-center justify-center">
+      <main className="flex-grow w-full">
         <Outlet />
       </main>
       <Footer />
-    </div>
-  ) : (
-    <div className="bg-gray-900 text-white w-screen h-screen flex items-center justify-center">
-      <h1 className="text-2xl">Loading...</h1>
     </div>
   );
 }

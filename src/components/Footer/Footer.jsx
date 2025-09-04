@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { FaLink, FaBolt } from "react-icons/fa6";
+import React, { useState, useEffect } from "react";
+import { FaLink, FaBolt, FaArrowUp } from "react-icons/fa6";
 import {
   FaStar,
   FaHome,
@@ -7,67 +7,46 @@ import {
   FaGithub,
   FaLinkedin,
   FaEnvelope,
-  FaArrowUp,
 } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Footer = () => {
-  // Get current location to detect route changes
-  const location = useLocation();
-  
-  // Create a top anchor element when component mounts
-  useEffect(() => {
-    // Create the top anchor if it doesn't exist
-    if (!document.getElementById("top-of-site")) {
-      const topAnchor = document.createElement("div");
-      topAnchor.id = "top-of-site";
-      topAnchor.style.position = "absolute";
-      topAnchor.style.top = "0";
-      topAnchor.style.left = "0";
-      topAnchor.style.height = "1px";
-      topAnchor.style.width = "1px";
-      document.body.prepend(topAnchor);
-    }
-  }, []);
-  
-  // Function to scroll to the top of the page
-  const scrollToTop = () => {
-    console.log("Scroll to top clicked");
-    
-    // Try multiple approaches to ensure scrolling works
-    try {
-      // Method 1: Use scrollIntoView on the top anchor
-      const topElement = document.getElementById("top-of-site");
-      if (topElement) {
-        topElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-      
-      // Method 2: Direct window scroll as fallback
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-      }, 50);
-    } catch (error) {
-      // Method 3: Simple scroll as last resort
-      window.scrollTo(0, 0);
-      console.error("Smooth scroll failed:", error);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Show button when page is scrolled down
+  const toggleScrollButton = () => {
+    if (window.pageYOffset > 300) {
+      setShowScrollTop(true);
+    } else {
+      setShowScrollTop(false);
     }
   };
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleScrollButton);
+    return () => {
+      window.removeEventListener("scroll", toggleScrollButton);
+    };
+  }, []);
+
   return (
-    <div className="w-full border-t border-t-gray-200/40 md:px-8 px-4 py-8 md:py-12">
+    <footer className="w-full border-t border-t-gray-200/40 px-4 md:px-8 py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mb-8 gap-8">
         <div className="flex flex-col md:col-span-2 gap-4">
           <span className="flex items-center gap-2">
-            <p className="bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 rounded-lg p-3">
-              <FaBolt className="text-gray-100 text-xl" />
+            <p className="bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 rounded-lg p-2 md:p-3">
+              <FaBolt className="text-gray-100 text-lg md:text-xl" />
             </p>
-            <p className="text-2xl font-bold">Muhammad Ahmed Raza</p>
+            <p className="text-xl md:text-2xl font-bold">Muhammad Ahmed Raza</p>
           </span>
           <div className="flex flex-col gap-4 items-start">
             <p className="text-gray-200 w-full md:w-11/12">
@@ -76,7 +55,7 @@ const Footer = () => {
               that shaped me.
             </p>
             <Link to="https://github.com/mahmedraza1">
-              <button className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 hover:-translate-0.5 cursor-pointer px-4 py-2 rounded-lg font-semibold shadow">
+              <button className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-500/90 transition-all duration-300 hover:-translate-y-1 cursor-pointer px-4 py-2 rounded-lg font-semibold shadow">
                 <FaGithub className="text-gray-100 text-xl" /> Github
               </button>
             </Link>
@@ -85,22 +64,50 @@ const Footer = () => {
         <div className="flex flex-col">
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <span className="flex flex-col gap-2">
-            <NavLink to="/" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-orange-500 font-bold"
+                  : "text-gray-200 hover:text-orange-500"
+              }
+            >
               <span className="flex items-center gap-2">
                 <FaHome /> Home
               </span>
             </NavLink>
-            <NavLink to="/blogs" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-orange-500 font-bold"
+                  : "text-gray-200 hover:text-orange-500"
+              }
+            >
               <span className="flex items-center gap-2">
                 <FaBook /> Blogs
               </span>
             </NavLink>
-            <NavLink to="/about" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-orange-500 font-bold"
+                  : "text-gray-200 hover:text-orange-500"
+              }
+            >
               <span className="flex items-center gap-2">
                 <MdPerson /> About
               </span>
             </NavLink>
-            <NavLink to="https://www.fiverr.com/mahmedraza1" className={({isActive}) => isActive ? "text-orange-500 font-bold" : "text-gray-200 hover:text-orange-500"}>
+            <NavLink
+              to="https://www.fiverr.com/mahmedraza1"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-orange-500 font-bold"
+                  : "text-gray-200 hover:text-orange-500"
+              }
+            >
               <span className="flex items-center gap-2">
                 <FaLink /> Work With Me
               </span>
@@ -156,19 +163,26 @@ const Footer = () => {
             Built with ❤️ using React JS
           </p>
         </span>
-        <a 
-          href="#top-of-site"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToTop();
-          }}
-          className="flex cursor-pointer items-center gap-2 mt-4 hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border bg-gray-500/40 border-stone-500 shadow px-3 py-2"
+        <button
+          onClick={scrollToTop}
+          className="flex cursor-pointer items-center gap-2 mt-4 md:mt-0 hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border bg-gray-500/40 border-stone-500 shadow px-3 py-2"
         >
           <FaArrowUp className="text-gray-100 text-sm" />
           <p className="text-sm">Back to Top</p>
-        </a>
+        </button>
       </div>
-    </div>
+
+      {/* Floating Scroll To Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-orange-500 hover:bg-orange-600 shadow-lg transition-all duration-300 animate-bounce"
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp className="text-white" />
+        </button>
+      )}
+    </footer>
   );
 };
 
