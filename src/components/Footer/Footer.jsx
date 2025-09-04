@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaLink, FaBolt } from "react-icons/fa6";
 import {
   FaStar,
@@ -10,9 +10,55 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  // Get current location to detect route changes
+  const location = useLocation();
+  
+  // Create a top anchor element when component mounts
+  useEffect(() => {
+    // Create the top anchor if it doesn't exist
+    if (!document.getElementById("top-of-site")) {
+      const topAnchor = document.createElement("div");
+      topAnchor.id = "top-of-site";
+      topAnchor.style.position = "absolute";
+      topAnchor.style.top = "0";
+      topAnchor.style.left = "0";
+      topAnchor.style.height = "1px";
+      topAnchor.style.width = "1px";
+      document.body.prepend(topAnchor);
+    }
+  }, []);
+  
+  // Function to scroll to the top of the page
+  const scrollToTop = () => {
+    console.log("Scroll to top clicked");
+    
+    // Try multiple approaches to ensure scrolling works
+    try {
+      // Method 1: Use scrollIntoView on the top anchor
+      const topElement = document.getElementById("top-of-site");
+      if (topElement) {
+        topElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+      
+      // Method 2: Direct window scroll as fallback
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, 50);
+    } catch (error) {
+      // Method 3: Simple scroll as last resort
+      window.scrollTo(0, 0);
+      console.error("Smooth scroll failed:", error);
+    }
+  };
   return (
     <div className="w-full border-t border-t-gray-200/40 md:px-8 px-4 py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mb-8 gap-8">
@@ -110,13 +156,17 @@ const Footer = () => {
             Built with ❤️ using React JS
           </p>
         </span>
-        <button
-          onClick={window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex cursor-pointer items-center gap-2 mt-4  hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border bg-gray-500/40 border-stone-500 shadow px-3 py-2"
+        <a 
+          href="#top-of-site"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToTop();
+          }}
+          className="flex cursor-pointer items-center gap-2 mt-4 hover:bg-gray-500/60 transition-all duration-300 hover:-translate-y-0.5 rounded-lg border bg-gray-500/40 border-stone-500 shadow px-3 py-2"
         >
           <FaArrowUp className="text-gray-100 text-sm" />
           <p className="text-sm">Back to Top</p>
-        </button>
+        </a>
       </div>
     </div>
   );

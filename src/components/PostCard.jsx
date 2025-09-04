@@ -6,18 +6,25 @@ import { TiAttachment } from 'react-icons/ti'
 
 const PostCard = ({$id, title, featuredImage}) => {
   return (
-
-    <Link to={`/post/${$id}`}>
-        <div className="border border-gray-300 rounded-md overflow-hidden p-1 w-80">
-            <img src={PostService.getFilePreview(featuredImage)} alt={title} className='w-full h-64 object-cover object-center rounded-lg' />
-            <div className="p-4 flex flex-col gap-1">
-                <h2 className="text-lg font-semibold">{title}</h2>
-                <Link to={`/post/${$id}`}>
-                    <Button>Read More</Button>
-                </Link>
-            </div>
-        </div>
-    </Link>
+    <div className="flex justify-center">
+      <div className="w-full max-w-sm border border-gray-700 bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
+          <div className="relative w-full pb-[56.25%]">
+              <img 
+                  src={PostService.getFilePreview(featuredImage)} 
+                  alt={title} 
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+              />
+          </div>
+          <div className="p-4 flex flex-col gap-3">
+              <h2 className="text-xl font-semibold text-white line-clamp-2 h-14">{title}</h2>
+              <div className="flex justify-end mt-2">
+                  <Link to={`/post/${$id}`}>
+                      <Button className="text-sm py-1 px-3">Read More</Button>
+                  </Link>
+              </div>
+          </div>
+      </div>
+    </div>
   )
 }
 
