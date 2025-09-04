@@ -12,15 +12,12 @@ const EditPost = () => {
     if (slug) {
       PostService.getPost(slug).then((fetchedPost) => {
         if (fetchedPost) {
-          console.log("Edit post data loaded:", fetchedPost);
           // Ensure the slug property exists
           if (!fetchedPost.slug) {
             fetchedPost.slug = fetchedPost.$id;
-            console.log("Post had no slug, using $id as slug:", fetchedPost.$id);
           }
           setPost(fetchedPost);
         } else {
-          console.log("Post not found with slug:", slug);
           navigate("/");
         }
       }).catch(error => {

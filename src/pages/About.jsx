@@ -24,7 +24,7 @@ const About = () => {
             />
           </div>
           
-          <div className="space-y-6 max-w-2xl mx-auto bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-lg">
+          <div className="space-y-6 text-left max-w-2xl mx-auto bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-lg">
             <p className="text-gray-300 leading-relaxed text-lg">
               Hi, I'm Muhammad Ahmed Raza, but most people know me as Mark (an
               acronym of my name). I'm a MERN stack developer with experience in
@@ -51,11 +51,11 @@ const About = () => {
                 <h3 className="text-xl font-bold">Technical Skills</h3>
               </div>
               <ul className="list-disc list-inside space-y-1 text-gray-300">
-                <li>MERN Stack (MongoDB, Express, React, Node.js)</li>
-                <li>React Native for Mobile Applications</li>
-                <li>Electron.js for Desktop Applications</li>
+                <li>MERN Stack</li>
+                <li>React Native</li>
+                <li>Electron.js</li>
                 <li>C++ Programming</li>
-                <li>Tailwind CSS & Material UI</li>
+                <li>Tailwind CSS</li>
               </ul>
             </div>
             

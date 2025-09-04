@@ -12,7 +12,6 @@ const AllPosts = () => {
       try {
         setLoading(true);
         const posts = await PostService.getPosts();
-        console.log("Posts fetched:", posts);
         if (posts && posts.documents) {
           setPosts(posts.documents);
         } else {

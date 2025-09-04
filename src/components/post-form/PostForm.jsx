@@ -30,7 +30,6 @@ const PostForm = ({ post }) => {
       });
       
       // Log that we're resetting form with post data
-      console.log("Resetting form with post data:", post);
     }
   }, [post, reset]);
 
@@ -42,7 +41,6 @@ const PostForm = ({ post }) => {
       setIsSubmitting(true);
       setError("");
       
-      console.log("Form data being submitted:", data);
       
       if (post) {
         // Edit mode
@@ -50,10 +48,8 @@ const PostForm = ({ post }) => {
         
         // Upload new image if provided
         if (data.image && data.image.length > 0) {
-          console.log("Uploading new image for post...");
           const file = await PostService.uploadFile(data.image[0]);
           if (file) {
-            console.log("New image uploaded successfully:", file.$id);
             // Delete old image if new one was uploaded successfully
             await PostService.deleteFile(post.featuredImage);
             featuredImageId = file.$id;
@@ -62,13 +58,7 @@ const PostForm = ({ post }) => {
           console.log("No new image provided, keeping existing image:", featuredImageId);
         }
 
-        console.log("Updating post with data:", {
-          title: data.title,
-          content: data.content,
-          slug: data.slug,
-          status: data.status,
-          featuredImage: featuredImageId
-        });
+
         
         const dbPost = await PostService.updatePost({
           title: data.title,
@@ -83,12 +73,10 @@ const PostForm = ({ post }) => {
         }
       } else {
         // Create mode
-        console.log("Creating new post...");
         const file = await PostService.uploadFile(data.image[0]);
 
         if (file) {
           const fileId = file.$id;
-          console.log("Image uploaded successfully:", fileId);
           
           const postData = {
             title: data.title,

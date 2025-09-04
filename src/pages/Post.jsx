@@ -25,7 +25,6 @@ export default function Post() {
       PostService.getPost(slug)
         .then((post) => {
           if (post) {
-            console.log("Post data:", post);
             setPost(post);
           } else {
             setError("Post not found");

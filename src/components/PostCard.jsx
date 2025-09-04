@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import PostService from '../appwrite/config'
 import { Link } from 'react-router-dom'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom'
 
 const PostCard = ({$id, title, featuredImage}) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  
+  const navigate = useNavigate();
+
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
@@ -17,6 +19,7 @@ const PostCard = ({$id, title, featuredImage}) => {
   };
 
   return (
+    <Link to={`/post/${$id}`}>
     <div className="flex justify-center h-full">
       <div className="w-full border border-gray-700 bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] h-full flex flex-col">
           <div className="relative w-full pb-[56.25%]">
@@ -25,6 +28,7 @@ const PostCard = ({$id, title, featuredImage}) => {
                   <div className="animate-pulse rounded-full h-10 w-10 border-t-2 border-b-2 border-orange-500"></div>
                 </div>
               )}
+              
               
               {imageError ? (
                 <div className="absolute inset-0 bg-gray-800 flex justify-center items-center">
@@ -48,13 +52,13 @@ const PostCard = ({$id, title, featuredImage}) => {
           <div className="p-4 flex flex-col gap-3 flex-grow">
               <h2 className="text-xl font-semibold text-white line-clamp-2 h-14">{title}</h2>
               <div className="flex justify-end mt-auto">
-                  <Link to={`/post/${$id}`}>
-                      <Button className="text-sm py-1 px-3">Read More</Button>
-                  </Link>
+                      <Button onClick={() => navigate(`/post/${$id}`)} className="text-sm py-1 px-3">Read More</Button>
+                  
               </div>
           </div>
       </div>
     </div>
+    </Link>
   )
 }
 

@@ -21,7 +21,6 @@ const Login = () => {
     setIsLoading(true);
     
     try {
-      console.log("Login attempt with:", data);
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();

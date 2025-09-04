@@ -25,7 +25,6 @@ const Signup = () => {
     setError("");
     
     try {
-      console.log("Signup attempt with:", data);
       const {name, email, password} = data;
       // Fix parameter order to match the auth service implementation
       const user = await authService.createAccount(email, password, name);
