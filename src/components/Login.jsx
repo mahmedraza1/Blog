@@ -12,12 +12,13 @@ const Login = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (data) => {
     setError("");
     try {
+      console.log("Login attempt with:", data);
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();
@@ -25,7 +26,8 @@ const Login = () => {
         navigate("/");
       }
     } catch (error) {
-      setError(error.message);
+      console.error("Login error:", error);
+      setError(error.message || "Login failed. Please check your credentials.");
     }
   };
   const handleShowPassword = () => {
@@ -51,10 +53,10 @@ const Login = () => {
         >
           <Input
             type="email"
-            label="Email"
+            label="Email *"
             placeholder="Enter Your Email"
             {...register("email", {
-              required: true,
+              required: "Email is required",
               validate: {
                 matchPattern: (value) =>
                   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
@@ -62,18 +64,19 @@ const Login = () => {
               },
             })}
           />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
           <div className="relative w-full h-fit">
             <Input
               type={showPassword ? "text" : "password"}
-              label="Password"
+              label="Password *"
               placeholder="Enter Your Password"
               {...register("password", {
-                required: true,
-                minLength: 8,
+                required: "Password is required",
+                minLength: { value: 8, message: "Password must be at least 8 characters" },
                 validate: {
                   matchPattern: (value) =>
-                    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value) ||
-                    "Invalid password",
+                    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(value) ||
+                    "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
                 },
               })}
             />
@@ -85,6 +88,8 @@ const Login = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
+          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+          
           <p>
             Create an Account{" "}
             <NavLink to="/signup" className="text-orange-500">

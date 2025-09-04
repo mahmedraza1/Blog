@@ -18,6 +18,7 @@ const Header = () => {
       path: "https://www.fiverr.com/mahmedraza1",
       external: true,
     },
+    { label: "Add Post", path: "/add-post", active: authStatus },
     { label: "Login", path: "/login", active: !authStatus },
     { label: "Sign Up", path: "/signup", active: !authStatus },
   ];

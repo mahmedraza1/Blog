@@ -14,7 +14,7 @@ class AppwritePost {
     this.bucket = new Storage(this.client);
   }
 
-  async creatPost({ title, content, featuredImage, status, userID, slug }) {
+  async createPost({ title, content, featuredImage, status, userID, slug }) {
     try {
       return await this.database.createDocument(
         conf.appwriteDatabaseID,
@@ -67,7 +67,7 @@ class AppwritePost {
 
   async deletePost(id) {
     try {
-      return await this.database.getDocument(
+      return await this.database.deleteDocument(
         conf.appwriteDatabaseID,
         conf.appwriteCollectionID,
         id
@@ -115,12 +115,12 @@ class AppwritePost {
     }
   }
 
-  async getFilePreview(fileID){
+  getFilePreview(fileID){
     try{
-      return await this.bucket.getFilePreview(
-        conf.appwriteBucketID,
-        fileID
-      );
+      if (!fileID) return null;
+      
+      // Construct URL directly using the Appwrite endpoint
+      return `${conf.appwriteEndpoint}/storage/buckets/${conf.appwriteBucketID}/files/${fileID}/preview?project=${conf.appwriteProjectID}`;
     } catch(error){
       console.log("Failed to Get File Preview", error);
       return null;

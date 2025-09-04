@@ -12,7 +12,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = () => {
@@ -23,7 +23,8 @@ const Signup = () => {
     try {
       console.log("Signup attempt with:", data);
       const {name, email, password} = data;
-      const user = await authService.createAccount(name, email, password);
+      // Fix parameter order to match the auth service implementation
+      const user = await authService.createAccount(email, password, name);
       if (user) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(login(userData));
@@ -31,6 +32,7 @@ const Signup = () => {
       }
     } catch (error) {
       setError(error.message || "Signup failed");
+      console.error("Signup error:", error);
     }
   };
 
@@ -52,18 +54,19 @@ const Signup = () => {
         >
           <Input
             type="text"
-            label="Name"
+            label="Name *"
             placeholder="Enter Your Name"
             {...register("name", {
-              required: true,
+              required: "Name is required",
             })}
           />
+          {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
           <Input
             type="email"
-            label="Email"
+            label="Email *"
             placeholder="Enter Your Email"
             {...register("email", {
-              required: true,
+              required: "Email is required",
               validate: {
                 matchPattern: (value) =>
                   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
@@ -71,18 +74,19 @@ const Signup = () => {
               },
             })}
           />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
           <div className="relative w-full h-fit">
             <Input
               type={showPassword ? "text" : "password"}
-              label="Password"
+              label="Password *"
               placeholder="Enter Your Password"
               {...register("password", {
-                required: true,
-                minLength: 8,
+                required: "Password is required",
+                minLength: { value: 8, message: "Password must be at least 8 characters" },
                 validate: {
                   matchPattern: (value) =>
-                    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value) ||
-                    "Invalid password",
+                    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(value) ||
+                    "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
                 },
               })}
             />
@@ -94,12 +98,15 @@ const Signup = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
+          {errors.password && <p className="text-red-500 text-sm">{errors.password.message || "Password is required and must meet all requirements"}</p>}
           <div>
             <p className="text-gray-300">Password Must Contain:</p>
             <ul className="list-disc list-inside text-sm text-gray-300">
               <li>At least 8 characters</li>
-              <li>At least 1 letter</li>
+              <li>At least 1 uppercase letter</li>
+              <li>At least 1 lowercase letter</li>
               <li>At least 1 number</li>
+              <li>At least 1 special character</li>
             </ul>
           </div>
           <p>

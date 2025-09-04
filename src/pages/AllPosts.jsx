@@ -13,11 +13,15 @@ const AllPosts = () => {
     fetchPosts();
   }, []);
 
-  return (
+  return posts.length ? (
     <div>
       {posts.map((post) => (
         <PostCard key={post.$id} post={post} />
       ))}
+    </div>
+  ) : (
+    <div className="text-center text-gray-400">
+      <h2 className="text-2xl font-semibold">No posts available</h2>
     </div>
   );
 };

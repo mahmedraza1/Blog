@@ -1,5 +1,5 @@
 import React from "react";
-import { Editor } from "tinymce";
+import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
 
 const RTE = ({ name, control, label, defaultValue = "" }) => {
@@ -11,8 +11,14 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
+            tinymceScriptSrc={`${
+              import.meta.env.BASE_URL
+            }tinymce/tinymce.min.js`}
+            licenseKey="gpl"
             initialValue={defaultValue}
             init={{
+              skin: "oxide-dark",
+              content_css: "dark",
               initialValue: defaultValue,
               height: 500,
               menubar: true,

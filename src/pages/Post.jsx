@@ -12,12 +12,15 @@ export default function Post() {
 
   const userData = useSelector((state) => state.auth.userData);
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const isAuthor = post && userData ? post.userID === userData.$id : false;
 
   useEffect(() => {
     if (slug) {
       PostService.getPost(slug).then((post) => {
-        if (post) setPost(post);
+        if (post) {
+          console.log("Post data:", post);
+          setPost(post);
+        }
         else navigate("/");
       });
     } else navigate("/");
@@ -33,19 +36,18 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8">
-      <div>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          <img
-            src={PostService.getFilePreview(post.featuredImage)}
-            alt={post.title}
-            className="rounded-xl"
-          />
-
+    <div className="py-8 bg-gray-900">
+      <div className="flex flex-col gap-4 max-w-5xl mx-auto">
+        {/* Status indicator and action buttons row */}
+        <div className="flex justify-between items-center w-full px-4">
+          <div className="bg-black bg-opacity-50 text-white text-sm p-2 rounded-md">
+            Status: {post.status}
+          </div>
+          
           {isAuthor && (
-            <div className="absolute right-6 top-6">
+            <div className="flex flex-row gap-3">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
+                <Button bgColor="bg-green-500">
                   Edit
                 </Button>
               </Link>
@@ -55,10 +57,28 @@ export default function Post() {
             </div>
           )}
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+        
+        <div className="w-full max-w-4xl mx-auto mb-4">
+          <div className="relative w-full pb-[56.25%]">
+            <img
+              src={PostService.getFilePreview(post.featuredImage)}
+              alt={post.title}
+              className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg border-2 border-gray-700"
+            />
+          </div>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="max-w-4xl mx-auto px-4 py-6 bg-gray-800 rounded-lg shadow-lg">
+          <div className="w-full mb-6 border-b border-gray-700 pb-4">
+            <h1 className="text-3xl font-bold text-white mb-2">{post.title}</h1>
+            <div className="text-gray-400 text-sm">
+              {post.$createdAt ? `Posted on ${new Date(post.$createdAt).toLocaleDateString()}` : ''}
+            </div>
+          </div>
+          
+          <div className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed">
+            {parse(post.content)}
+          </div>
+        </div>
       </div>
     </div>
   ) : null;
